@@ -18,12 +18,12 @@ export function useJsApiLoader({
   version = defaultLoadScriptProps.version,
   nonce,
   googleMapsApiKey,
-  // googleMapsClientId,
+  googleMapsClientId,
+  channel,
   language,
   region,
   libraries,
   preventGoogleFontsLoading,
-  // channel,
   mapIds,
 }: UseLoadScriptOptions): {
   isLoaded: boolean
@@ -44,6 +44,8 @@ export function useJsApiLoader({
     return new Loader({
       id,
       apiKey: googleMapsApiKey,
+      client: googleMapsClientId,
+      channel,
       version,
       libraries,
       language,
@@ -51,7 +53,7 @@ export function useJsApiLoader({
       mapIds,
       nonce,
     })
-  }, [id, googleMapsApiKey, version, libraries, language, region, mapIds, nonce])
+  }, [id, googleMapsApiKey, googleMapsClientId, channel, version, libraries, language, region, mapIds, nonce])
 
   useEffect(function effect() {
     if (isLoaded) {
